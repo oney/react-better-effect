@@ -1,6 +1,6 @@
-import React, { DependencyList } from "react";
-import { useCleanupRef } from "./useCleanupRef";
-import { useLatest } from "./useLatest";
+import React, { DependencyList } from 'react';
+import { useCleanupRef } from './useCleanupRef';
+import { useLatest } from './useLatest';
 
 export function useLayoutEffect<L extends Readonly<{}>>(
   effect: (
@@ -13,6 +13,6 @@ export function useLayoutEffect<L extends Readonly<{}>>(
   const prevRef = useCleanupRef(latest);
   React.useLayoutEffect(() => {
     const cleanup = effect(latest_);
-    return cleanup == null ? cleanup : () => cleanup(prevRef.current);
+    return cleanup == null ? cleanup : () => cleanup(prevRef.current as any);
   }, deps);
 }
